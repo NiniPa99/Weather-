@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="weather-container">
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-info" id="loading-message">
+                <i class="fas fa-sync fa-spin me-2"></i> Loading weather data...
+            </div>
+            <div class="alert alert-danger d-none" id="error-message">
+                <i class="fas fa-exclamation-circle me-2"></i> 
+                <span id="error-text">Unable to load weather data.</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Use My Location Button -->
+    <div class="row mb-4">
+        <div class="col-12 text-center">
+            <button class="btn btn-info location-btn" id="location-btn">
+                <i class="fas fa-map-marker-alt me-1"></i> Use My Location
+            </button>
+        </div>
+    </div>
+    
+    <div class="row" id="weather-cards">
+        <!-- Weather cards will be dynamically inserted here -->
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/animations.js') }}"></script>
+<script src="{{ url_for('static', filename='js/weather.js') }}"></script>
+<script>
+    // Initialize with cities from the server
+    const cities = {{ cities|tojson }};
+    document.addEventListener('DOMContentLoaded', () => {
+        initWeatherDashboard(cities);
+        
+        // Set up location button click handler
+        document.getElementById('location-btn').addEventListener('click', () => {
+            getUserLocation();
+        });
+    });
+</script>
+{% endblock %}

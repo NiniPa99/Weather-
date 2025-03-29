@@ -1,0 +1,258 @@
+/* Custom styles for the Weather Dashboard */
+
+body {
+    min-height: 100vh;
+    background-image: linear-gradient(to bottom, #1a2a3a, #0d1b2a);
+    background-attachment: fixed;
+}
+
+/* Weather cards */
+.weather-card-col .card {
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.weather-icon {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Weather icon colors based on condition */
+.fa-sun {
+    color: #ffc107;
+}
+
+.fa-cloud {
+    color: #adb5bd;
+}
+
+.fa-cloud-rain {
+    color: #0dcaf0;
+}
+
+.fa-bolt {
+    color: #ffc107;
+}
+
+.fa-snowflake {
+    color: #f8f9fa;
+}
+
+.fa-smog {
+    color: #ced4da;
+}
+
+.fa-wind {
+    color: #6c757d;
+}
+
+/* Loading animation */
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+.placeholder {
+    animation: pulse 1.5s infinite;
+}
+
+/* Weather container layout */
+.weather-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Make cards equal height within a row */
+.weather-card-col .card {
+    height: 100%;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 767px) {
+    .weather-card-col {
+        margin-bottom: 1rem;
+    }
+}
+
+/* "Use My Location" button */
+.location-btn {
+    position: relative;
+    z-index: 100;
+    margin: 0 auto 1.5rem auto;
+    display: block;
+    border-radius: 25px;
+    padding: 0.5rem 1.5rem;
+}
+
+/* Location Card Highlight */
+.my-location-card {
+    border: 2px solid var(--bs-info) !important;
+    box-shadow: 0 0 15px rgba(13, 202, 240, 0.5) !important;
+}
+
+/* Rain animation */
+.rain-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.rain-drop {
+    position: absolute;
+    width: 2px;
+    height: 10px;
+    background: rgba(174, 217, 255, 0.5);
+    border-radius: 5px;
+}
+
+@keyframes rain-fall {
+    from {
+        transform: translateY(-120px);
+    }
+    to {
+        transform: translateY(300px);
+    }
+}
+
+/* Snow animation */
+.snow-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.snow-flake {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+}
+
+@keyframes snow-fall {
+    from {
+        transform: translateY(-50px) translateX(0);
+    }
+    to {
+        transform: translateY(300px) translateX(20px);
+    }
+}
+
+/* Sunny/Clear animation */
+.sun-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.sun {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    background: #ffc107;
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(255, 193, 7, 0.8);
+}
+
+.sun-ray {
+    position: absolute;
+    background: rgba(255, 193, 7, 0.6);
+    border-radius: 10px;
+}
+
+.sun-ray-horizontal {
+    height: 3px;
+    width: 20px;
+}
+
+.sun-ray-vertical {
+    width: 3px;
+    height: 20px;
+}
+
+.sun-ray-diagonal {
+    height: 3px;
+    width: 15px;
+    transform-origin: left center;
+}
+
+@keyframes sun-pulse {
+    0% { transform: scale(1); box-shadow: 0 0 20px rgba(255, 193, 7, 0.5); }
+    50% { transform: scale(1.05); box-shadow: 0 0 30px rgba(255, 193, 7, 0.8); }
+    100% { transform: scale(1); box-shadow: 0 0 20px rgba(255, 193, 7, 0.5); }
+}
+
+@keyframes sun-ray-pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+/* Air Quality and UV Index widgets */
+.air-quality-widget,
+.uv-index-widget {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 1rem;
+}
+
+.widget-title {
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.progress {
+    background-color: rgba(255, 255, 255, 0.1);
+    height: 8px !important;
+}
+
+.air-quality-widget small,
+.uv-index-widget small {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Blow out animation keyframes */
+@keyframes blow-out {
+    0% {
+        transform: scale(0.1);
+        opacity: 0;
+        filter: blur(10px);
+    }
+    70% {
+        transform: scale(1.1);
+        opacity: 0.9;
+        filter: blur(0px);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+        filter: blur(0px);
+    }
+}
+
+/* Optional class for cards to use CSS animation instead of GSAP */
+.blow-out-animation {
+    animation: blow-out 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+}
